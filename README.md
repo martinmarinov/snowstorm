@@ -14,7 +14,7 @@ The wind effect can create vortexes that carry particles around in a very realis
 
 # Download
 
-[Click to download!](release/SnowStorm.jar)
+[Click to download!](release/SnowStorm.jar?raw=true)
 
 If you have Java installed, double click the downloaded file. No additional installation required.
 
