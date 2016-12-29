@@ -12,6 +12,14 @@ The wind effect can create vortexes that carry particles around in a very realis
 
 *Disclaimer:* This is a just-for-fun and possibly educational project created from scratch in an afternoon. So no unit test, no seriousness, no attempt to make it 100% physically accurate. Just enjoy the snowflakes, they are beautiful!
 
+# Download
+
+[Click to download!](release/SnowStorm.jar)
+
+If you have Java installed, double click the downloaded file. No additional installation required.
+
+Works on all operating systems that support Java Runtime Environment (JRE): Linux, OS X, Windows
+
 # Compiling
 
 This is a plain IntelliJ IDEA project. Since the project doesn't have any dependencies you can just run it!
