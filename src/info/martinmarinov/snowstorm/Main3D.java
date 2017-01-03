@@ -49,7 +49,7 @@ public class Main3D {
 
         Driver driver = new Driver(scene, simulator, screenParameters, painterLeft, painterRight);
 
-        frame.setLayout(new GridLayout(0, 2));
+        frame.setLayout(new GridLayout(1, 2));
         frame.add(painterLeft);
         frame.add(painterRight);
 
