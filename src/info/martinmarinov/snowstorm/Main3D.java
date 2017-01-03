@@ -33,15 +33,12 @@ public class Main3D {
     public static void main(String args[]) throws IOException {
         GraphicsDevice device = getGraphicsDevice();
 
-        JFrame frame = new JFrame("Snow Storm");
         BufferedImage background = ImageIO.read(Main.class.getClassLoader().getResourceAsStream("winterPic.jpg"));
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setUndecorated(true);
-        device.setFullScreenWindow(frame);
-        frame.pack();
-
         Rectangle bounds = device.getDefaultConfiguration().getBounds();
-        ScreenParameters screenParameters = new ScreenParameters((int)(bounds.getWidth() / 2), (int) (bounds.getHeight()));
+        int screenWidth = (int) bounds.getWidth();
+        int screenHeight = (int) bounds.getHeight();
+
+        ScreenParameters screenParameters = new ScreenParameters(screenWidth / 2, screenHeight);
         Snowflake[] scene = SceneGenerator.newDefaultScene(SNOW_FLAKES_COUNT, screenParameters);
         AwtCanvasPainter painterLeft = AwtCanvasPainter.withBackground(background, STEREO_SEPARATION);
         AwtCanvasPainter painterRight = AwtCanvasPainter.withBackground(background, -STEREO_SEPARATION);
@@ -49,16 +46,23 @@ public class Main3D {
 
         Driver driver = new Driver(scene, simulator, screenParameters, painterLeft, painterRight);
 
+        JFrame frame = new JFrame("Snow Storm");
+        frame.setUndecorated(true);
+        frame.setSize(screenWidth, screenHeight);
+        frame.pack();
+
         frame.setLayout(new GridLayout(1, 2));
         frame.add(painterLeft);
         frame.add(painterRight);
 
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         painterLeft.setUp();
         painterRight.setUp();
 
+        device.setFullScreenWindow(frame);
         driver.start();
     }
 
