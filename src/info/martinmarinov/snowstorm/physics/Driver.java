@@ -18,25 +18,25 @@ public class Driver extends ConstantFpsThread {
     private final static double DEFAULT_FPS = 60.0;
 
     private final Snowflake[] scene;
-    private final Painter painter;
+    private final Painter[] painters;
     private final Simulator simulator;
     private final ScreenParameters screenParameters;
 
-    public Driver(Snowflake[] scene, Painter painter, Simulator simulator, ScreenParameters screenParameters, double fps) {
+    public Driver(Snowflake[] scene, Simulator simulator, ScreenParameters screenParameters, double fps, Painter ... painters) {
         super(fps);
         this.scene = scene;
-        this.painter = painter;
+        this.painters = painters;
         this.simulator = simulator;
         this.screenParameters = screenParameters;
     }
 
-    public Driver(Snowflake[] scene, Painter painter, Simulator simulator, ScreenParameters screenParameters) {
-        this(scene, painter, simulator, screenParameters, DEFAULT_FPS);
+    public Driver(Snowflake[] scene, Simulator simulator, ScreenParameters screenParameters, Painter ... painters) {
+        this(scene, simulator, screenParameters, DEFAULT_FPS, painters);
     }
 
     @Override
     protected void doWork() {
         simulator.advance(scene, screenParameters, delayNs);
-        painter.drawScene(scene, screenParameters);
+        for (Painter painter : painters) painter.drawScene(scene, screenParameters);
     }
 }

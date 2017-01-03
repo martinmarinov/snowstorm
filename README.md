@@ -10,15 +10,20 @@ The simulation features a very simple 3D physics and rendering engine. All parti
 
 The wind effect can create vortexes that carry particles around in a very realistic manner.
 
+This also supports 3D TVs (side by side) for a fully immersive 3D snow experience.
+
 *Disclaimer:* This is a just-for-fun and possibly educational project created from scratch in an afternoon. So no unit test, no seriousness, no attempt to make it 100% physically accurate. Just enjoy the snowflakes, they are beautiful!
 
 # Download
 
-[Click to download!](release/SnowStorm.jar?raw=true)
+[Click to download regular version](release/SnowStorm.jar?raw=true)
+[Click to download 3D version (will only work on 3D TVs and projectors)](release/SnowStorm3D.jar?raw=true)
 
 If you have Java installed, double click the downloaded file. No additional installation required.
 
 Works on all operating systems that support Java Runtime Environment (JRE): Linux, OS X, Windows
+
+If you chose the 3D version, SnowStorm will launch full screen on your external display. Make sure that this displays supports 3D content. For example, you can connect your PC to a 3D capable TV or projector. The 3D output mode is side-by-side, left-right.
 
 # Compiling
 

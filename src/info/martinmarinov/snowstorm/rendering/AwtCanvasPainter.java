@@ -24,9 +24,19 @@ public class AwtCanvasPainter extends Canvas implements Painter {
 
     private final FpsCounter fpsCounter = new FpsCounter();
     private final BufferedImage background;
+    private final double xoffset;
 
-    public AwtCanvasPainter(BufferedImage background) {
+    public static AwtCanvasPainter withBackground(BufferedImage background) {
+        return withBackground(background, 0.0);
+    }
+
+    public static AwtCanvasPainter withBackground(BufferedImage background, double xoffset) {
+        return new AwtCanvasPainter(background, xoffset);
+    }
+
+    private AwtCanvasPainter(BufferedImage background, double xoffset) {
         this.background = background;
+        this.xoffset = xoffset;
     }
 
     public void setUp() {
@@ -44,9 +54,9 @@ public class AwtCanvasPainter extends Canvas implements Painter {
                 Graphics2D g2d = (Graphics2D) strategy.getDrawGraphics();
                 SnowFlake3DRenderer snowFlake3DRenderer = new AwtSnowflakeRenderer(g2d, screenParameters);
 
-                drawBackground(g2d);
+                drawBackground(g2d, screenParameters);
                 for (Snowflake snowflake : scene) {
-                    snowFlake3DRenderer.renderSnowflake(snowflake.x, snowflake.y, snowflake.size, snowflake.z, screenParameters);
+                    snowFlake3DRenderer.renderSnowflake(snowflake.x + xoffset, snowflake.y, snowflake.size, snowflake.z, screenParameters);
                 }
 
                 if (DEBUG_SHOW_FPS) {
@@ -68,10 +78,10 @@ public class AwtCanvasPainter extends Canvas implements Painter {
      * Draw background with some opacity. This actually creates motion blur effect
      * since previous positions of the snowflakes are still partially visible underneath
      */
-    private void drawBackground(Graphics2D g2d) {
+    private void drawBackground(Graphics2D g2d, ScreenParameters screenParameters) {
         Composite defaultComposite = g2d.getComposite();
         g2d.setComposite(LOW_OPACITY);
-        g2d.drawImage(background, 0, 0, null);
+        g2d.drawImage(background, 0, 0, screenParameters.x, screenParameters.y, null);
         g2d.setComposite(defaultComposite);
     }
 }
