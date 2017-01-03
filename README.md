@@ -17,6 +17,7 @@ This also supports 3D TVs (side by side) for a fully immersive 3D snow experienc
 # Download
 
 [Click to download regular version](release/SnowStorm.jar?raw=true)
+
 [Click to download 3D version (will only work on 3D TVs and projectors)](release/SnowStorm3D.jar?raw=true)
 
 If you have Java installed, double click the downloaded file. No additional installation required.
